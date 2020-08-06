@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="colorPrimary">#1E2231</color>
+    <color name="colorPrimaryDark">#2E2E38</color>
+    <color name="colorAccent">#ED9E28</color>
+    <color name="backgroundColorLogin">#49495A</color>
+    <color name="entryFragmentTextColor">#2E2E38</color>
+    <color name="backgroundColorMenuFragments">#F6F6F6</color>
+    <color name="grayTextColor">#919191</color>
+    <color name="backgroundColorEntryFragment">#E5E5E5</color>
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#ED9E28</color>
+    <color name="sharePlaceHolderBackground">#DFDFDF</color>
+</resources>

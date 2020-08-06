@@ -1,0 +1,21 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="CustomEditTextStyle">
+        <item name="colorControlNormal">#979797</item>
+        <item name="colorControlActivated">#ED9E28</item>
+        <item name="colorControlHighlight">#FFFFFF</item>
+    </style>
+
+    <style name="CustomTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">#ED9E28</item>
+        <item name="boxStrokeWidth">2dp</item>
+    </style>
+
+</resources>
