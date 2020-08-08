@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.textfield.TextInputLayout;
 import com.mirkamal.beginnerandroidassignment.R;
 import com.mirkamal.beginnerandroidassignment.local.DataBase;
@@ -37,7 +38,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class FragmentShare extends Fragment {
 
-    private ImageView imageView;
+    private ImageView imageView, imageViewProfile;
     private TextView textViewUserName;
     private Switch switchComments;
     private TextInputLayout textInputLayoutDescription;
@@ -58,6 +59,7 @@ public class FragmentShare extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         imageView = view.findViewById(R.id.cropper);
+        imageViewProfile = view.findViewById(R.id.image_view_profile);
         textViewUserName = view.findViewById(R.id.text_view_username);
         switchComments = view.findViewById(R.id.switch_allow_comments);
         textInputLayoutDescription = view.findViewById(R.id.edit_text_description);
@@ -69,6 +71,7 @@ public class FragmentShare extends Fragment {
         postsDao = DataBase.getInstance(getContext()).getPostsDao();
 
         configureListeners();
+        loadProfilePicture();
     }
 
     private void configureListeners() {
@@ -138,6 +141,12 @@ public class FragmentShare extends Fragment {
                 e.printStackTrace();
             }
         }
+
+    }
+
+    private void loadProfilePicture() {
+
+        Glide.with(this).load("https://upleap.com/blog/wp-content/uploads/2018/10/how-to-create-the-perfect-instagram-profile-picture.jpg").circleCrop().placeholder(R.drawable.sample_profile_picture).into(imageViewProfile);
 
     }
 }

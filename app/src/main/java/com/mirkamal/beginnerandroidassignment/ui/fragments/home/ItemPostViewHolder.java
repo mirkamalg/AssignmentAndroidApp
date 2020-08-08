@@ -32,7 +32,7 @@ public class ItemPostViewHolder extends RecyclerView.ViewHolder {
 
     private void setProfilePicture() {
 
-        Glide.with(imageViewProfile.getContext()).load("https://upleap.com/blog/wp-content/uploads/2018/10/how-to-create-the-perfect-instagram-profile-picture.jpg").placeholder(R.drawable.sample_profile_picture).into(imageViewProfile);
+        Glide.with(imageViewProfile.getContext()).load("https://upleap.com/blog/wp-content/uploads/2018/10/how-to-create-the-perfect-instagram-profile-picture.jpg").circleCrop().placeholder(R.drawable.sample_profile_picture).into(imageViewProfile);
 
     }
 

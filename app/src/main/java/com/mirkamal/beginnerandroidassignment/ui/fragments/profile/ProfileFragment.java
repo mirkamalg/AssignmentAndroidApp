@@ -52,7 +52,7 @@ public class ProfileFragment extends Fragment {
 
     private void setProfilePicture() {
 
-        Glide.with(this).load("https://upleap.com/blog/wp-content/uploads/2018/10/how-to-create-the-perfect-instagram-profile-picture.jpg").placeholder(R.drawable.sample_profile_picture).into(imageViewProfile);
+        Glide.with(this).load("https://upleap.com/blog/wp-content/uploads/2018/10/how-to-create-the-perfect-instagram-profile-picture.jpg").circleCrop().placeholder(R.drawable.sample_profile_picture).into(imageViewProfile);
 
     }
 }
