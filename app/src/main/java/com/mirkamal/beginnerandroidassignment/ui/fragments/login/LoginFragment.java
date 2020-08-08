@@ -80,10 +80,10 @@ public class LoginFragment extends Fragment {
 
                 if (isEmailValid()) {
                     if (!editTextPassword.getText().toString().isEmpty()) {
-                        String attemptedPassword = usersDao.getPassword(editTextEmail.getText().toString());
+                        String attemptedPassword = usersDao.getPasswordByEmail(editTextEmail.getText().toString());
                         if (attemptedPassword != null) {
                             if (editTextPassword.getText().toString().equals(attemptedPassword)) {
-                                DataBase.LOGGED_IN_USER_NAME = usersDao.getUserName(editTextEmail.getText().toString());
+                                DataBase.LOGGED_IN_USER_ID = usersDao.getUserIDByEmail(editTextEmail.getText().toString());
 
                                 Toast.makeText(getContext(), "Welcome!", Toast.LENGTH_SHORT).show();
                                 navController.navigate(LoginFragmentDirections.actionLoginFragmentToContainerFragment());

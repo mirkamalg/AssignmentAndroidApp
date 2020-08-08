@@ -16,12 +16,16 @@ public class Post {
     @ColumnInfo(name = "description")
     private String description;
 
+    @ColumnInfo(name = "ownerid")
+    private String ownerID;
+
     @ColumnInfo(name = "comments")
     private Boolean comments;
 
-    public Post(String id, String description, Boolean comments) {
+    public Post(String id, String description, String ownerID, Boolean comments) {
         this.id = id;
         this.description = description;
+        this.ownerID = ownerID;
         this.comments = comments;
     }
 
@@ -35,5 +39,9 @@ public class Post {
 
     public Boolean getComments() {
         return comments;
+    }
+
+    public String getOwnerID() {
+        return ownerID;
     }
 }

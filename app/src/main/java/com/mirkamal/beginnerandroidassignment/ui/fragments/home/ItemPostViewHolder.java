@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.mirkamal.beginnerandroidassignment.R;
 import com.mirkamal.beginnerandroidassignment.local.DataBase;
+import com.mirkamal.beginnerandroidassignment.local.dao.UsersDao;
 import com.mirkamal.beginnerandroidassignment.model.entity.Post;
 
 import java.io.File;
@@ -36,7 +37,9 @@ public class ItemPostViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bindItem(Post post, File filesDir) {
-        textViewUserName.setText(DataBase.LOGGED_IN_USER_NAME);
+
+        UsersDao usersDao = DataBase.getInstance(imageViewPost.getContext()).getUsersDao();
+        textViewUserName.setText(usersDao.getUserNameByID(post.getOwnerID()));
 
         Glide.with(imageViewPost.getContext()).load(new File(filesDir, post.getId() + ".png")).into(imageViewPost);
     }

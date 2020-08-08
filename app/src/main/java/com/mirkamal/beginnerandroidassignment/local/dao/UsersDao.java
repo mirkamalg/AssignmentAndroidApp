@@ -14,11 +14,14 @@ public interface UsersDao {
     void insert(User user);
 
     @Query("select password from users where email = :email")
-    String getPassword(String email);
+    String getPasswordByEmail(String email);
 
-    @Query("select name from users where email = :email")
-    String getUserName(String email);
+    @Query("select name from users where id = :id")
+    String getUserNameByID(String id);
+
+    @Query("select id from users where email = :email")
+    String getUserIDByEmail(String email);
 
     @Query("select email from users where name = :name")
-    String getEmail(String name);
+    String getEmailByName(String name);
 }

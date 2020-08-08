@@ -22,6 +22,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.mirkamal.beginnerandroidassignment.R;
 import com.mirkamal.beginnerandroidassignment.local.DataBase;
 import com.mirkamal.beginnerandroidassignment.local.dao.PostsDao;
+import com.mirkamal.beginnerandroidassignment.local.dao.UsersDao;
 import com.mirkamal.beginnerandroidassignment.model.entity.Post;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
@@ -62,7 +63,8 @@ public class FragmentShare extends Fragment {
         textInputLayoutDescription = view.findViewById(R.id.edit_text_description);
         buttonShare = view.findViewById(R.id.button_share);
 
-        textViewUserName.setText(DataBase.LOGGED_IN_USER_NAME);
+        UsersDao usersDao = DataBase.getInstance(textViewUserName.getContext()).getUsersDao();
+        textViewUserName.setText(usersDao.getUserNameByID(DataBase.LOGGED_IN_USER_ID));
 
         postsDao = DataBase.getInstance(getContext()).getPostsDao();
 
@@ -87,7 +89,7 @@ public class FragmentShare extends Fragment {
                 if (isImageChosen) {
                     String id = UUID.randomUUID().toString();
 
-                    postsDao.insert(new Post(id, Objects.requireNonNull(textInputLayoutDescription.getEditText()).getText().toString(), switchComments.isSelected()));
+                    postsDao.insert(new Post(id, Objects.requireNonNull(textInputLayoutDescription.getEditText()).getText().toString(), DataBase.LOGGED_IN_USER_ID, switchComments.isSelected()));
 
                     writeImageToInternalStorage(((BitmapDrawable)imageView.getDrawable()).getBitmap(), id);
 

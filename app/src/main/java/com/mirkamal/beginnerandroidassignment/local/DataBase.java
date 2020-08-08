@@ -14,7 +14,7 @@ import com.mirkamal.beginnerandroidassignment.model.entity.User;
 @Database(entities = {Post.class, User.class}, version = 1, exportSchema = false)
 public abstract class DataBase extends RoomDatabase {
 
-    public static String LOGGED_IN_USER_NAME;
+    public static String LOGGED_IN_USER_ID;
 
     public static final String DATABASE_NAME = "AppDatabase";
     private static DataBase INSTANCE;

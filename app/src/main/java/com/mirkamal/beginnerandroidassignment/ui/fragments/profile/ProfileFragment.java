@@ -44,8 +44,10 @@ public class ProfileFragment extends Fragment {
     }
 
     private void setTexts() {
-        textViewEmail.setText(usersDao.getEmail(DataBase.LOGGED_IN_USER_NAME));
-        textViewUserName.setText(DataBase.LOGGED_IN_USER_NAME);
+        textViewEmail.setText(usersDao.getEmailByName(DataBase.LOGGED_IN_USER_ID));
+
+        UsersDao usersDao = DataBase.getInstance(textViewUserName.getContext()).getUsersDao();
+        textViewUserName.setText(usersDao.getUserNameByID(DataBase.LOGGED_IN_USER_ID));
     }
 
     private void setProfilePicture() {
