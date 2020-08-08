@@ -12,6 +12,7 @@ import com.mirkamal.beginnerandroidassignment.model.entity.Post;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PostsRecyclerViewAdapter extends RecyclerView.Adapter<ItemPostViewHolder> {
@@ -47,6 +48,7 @@ public class PostsRecyclerViewAdapter extends RecyclerView.Adapter<ItemPostViewH
     public void submitList(List<Post> posts) {
         postList.clear();
         postList.addAll(posts);
+        Collections.reverse(postList);
         notifyDataSetChanged();
     }
 }
