@@ -4,12 +4,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.mirkamal.beginnerandroidassignment.R;
 import com.mirkamal.beginnerandroidassignment.local.DataBase;
 import com.mirkamal.beginnerandroidassignment.local.dao.UsersDao;
@@ -17,6 +19,7 @@ import com.mirkamal.beginnerandroidassignment.local.dao.UsersDao;
 public class ProfileFragment extends Fragment {
 
     private TextView textViewEmail, textViewUserName;
+    private ImageView imageViewProfile;
 
     private UsersDao usersDao;
 
@@ -34,12 +37,20 @@ public class ProfileFragment extends Fragment {
 
         textViewEmail = view.findViewById(R.id.text_view_email);
         textViewUserName = view.findViewById(R.id.text_view_secondary_username);
+        imageViewProfile = view.findViewById(R.id.image_view_profile);
 
         setTexts();
+        setProfilePicture();
     }
 
     private void setTexts() {
         textViewEmail.setText(usersDao.getEmail(DataBase.LOGGED_IN_USER_NAME));
         textViewUserName.setText(DataBase.LOGGED_IN_USER_NAME);
+    }
+
+    private void setProfilePicture() {
+
+        Glide.with(this).load("https://upleap.com/blog/wp-content/uploads/2018/10/how-to-create-the-perfect-instagram-profile-picture.jpg").placeholder(R.drawable.sample_profile_picture).into(imageViewProfile);
+
     }
 }
