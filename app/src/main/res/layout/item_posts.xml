@@ -23,7 +23,8 @@
             app:layout_constraintBottom_toBottomOf="@id/card_view_container_profile_picture"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/card_view_container_profile_picture"
-            tools:text="Name Surname" />
+            tools:text="Name Surname"
+            android:textColor="@color/colorAccent"/>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_view_container_profile_picture"
