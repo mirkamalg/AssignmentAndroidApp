@@ -85,7 +85,7 @@ public class LoginFragment extends Fragment {
                             if (editTextPassword.getText().toString().equals(attemptedPassword)) {
                                 DataBase.LOGGED_IN_USER_ID = usersDao.getUserIDByEmail(editTextEmail.getText().toString());
 
-                                Toast.makeText(getContext(), "Welcome!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "Welcome, " + usersDao.getUserNameByID(DataBase.LOGGED_IN_USER_ID) + "!", Toast.LENGTH_SHORT).show();
                                 navController.navigate(LoginFragmentDirections.actionLoginFragmentToContainerFragment());
                             } else {
                                 Toast.makeText(getContext(), "Incorrect password!", Toast.LENGTH_SHORT).show();

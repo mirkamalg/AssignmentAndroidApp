@@ -83,7 +83,7 @@ public class RegisterSecondFragment extends Fragment {
 
                     DataBase.LOGGED_IN_USER_ID = usersDao.getUserIDByEmail(nameAndEmail[1]);
 
-                    Toast.makeText(getContext(), "Welcome!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Welcome, " + nameAndEmail[0] + "!", Toast.LENGTH_SHORT).show();
                     navController.navigate(RegisterSecondFragmentDirections.actionRegisterSecondFragmentToContainerFragment());
                 }
             }
