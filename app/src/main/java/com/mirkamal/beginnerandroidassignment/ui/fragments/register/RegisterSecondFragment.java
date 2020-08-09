@@ -100,7 +100,7 @@ public class RegisterSecondFragment extends Fragment {
                     if (matcher.find()) {
                         return true;
                     } else {
-                        Toast.makeText(getContext(), "Password is not valid!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Password is not valid!\nPassword should contain (at least 1 capital) letters, numbers and special characters ", Toast.LENGTH_LONG).show();
                     }
                 } else {
                     Toast.makeText(getContext(), "Passwords don't match!", Toast.LENGTH_SHORT).show();
