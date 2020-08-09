@@ -23,5 +23,8 @@ public interface UsersDao {
     String getUserIDByEmail(String email);
 
     @Query("select email from users where name = :name")
-    String getEmailByName(String name);
+    String getEmailByID(String name);
+
+    @Query("select email from users where email = :email")
+    String getEmail(String email);
 }

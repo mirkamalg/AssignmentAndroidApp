@@ -18,6 +18,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.mirkamal.beginnerandroidassignment.R;
+import com.mirkamal.beginnerandroidassignment.local.DataBase;
+import com.mirkamal.beginnerandroidassignment.local.dao.UsersDao;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -31,6 +33,8 @@ public class RegisterFirstFragment extends Fragment {
     private TextView textViewStep;
 
     private NavController navController;
+
+    private UsersDao usersDao;
 
     @Nullable
     @Override
@@ -50,6 +54,8 @@ public class RegisterFirstFragment extends Fragment {
         textViewLogin = view.findViewById(R.id.text_view_login);
         arrowView = view.findViewById(R.id.arrow_back);
         textViewStep = view.findViewById(R.id.text_view_step);
+
+        usersDao = DataBase.getInstance(getContext()).getUsersDao();
 
         configureListeners();
         configureTextViewStep();
@@ -75,14 +81,23 @@ public class RegisterFirstFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (isUserInputValid()) {
-                    navController.navigate(RegisterFirstFragmentDirections.actionRegisterFirstFragmentToRegisterSecondFragment(
-                            new String[]{editTextName.getText().toString()
-                                    , editTextEmail.getText().toString()}));
+
+                    if (isEmailUnique()) {
+                        navController.navigate(RegisterFirstFragmentDirections.actionRegisterFirstFragmentToRegisterSecondFragment(
+                                new String[]{editTextName.getText().toString()
+                                        , editTextEmail.getText().toString()}));
+                    }else {
+                        Toast.makeText(getContext(), "This email is already in use!", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
 
 
+    }
+
+    private boolean isEmailUnique() {
+        return usersDao.getEmail(editTextEmail.getText().toString()) == null;
     }
 
     private boolean isUserInputValid() {
