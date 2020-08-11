@@ -84,8 +84,8 @@ public class RegisterFirstFragment extends Fragment {
 
                     if (isEmailUnique()) {
                         navController.navigate(RegisterFirstFragmentDirections.actionRegisterFirstFragmentToRegisterSecondFragment(
-                                new String[]{editTextName.getText().toString()
-                                        , editTextEmail.getText().toString()}));
+                                new String[]{editTextName.getText().toString().trim()
+                                        , editTextEmail.getText().toString().trim()}));
                     }else {
                         Toast.makeText(getContext(), "This email is already in use!", Toast.LENGTH_SHORT).show();
                     }
