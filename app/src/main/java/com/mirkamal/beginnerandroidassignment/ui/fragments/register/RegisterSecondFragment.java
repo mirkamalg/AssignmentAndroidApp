@@ -76,15 +76,7 @@ public class RegisterSecondFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (isUserInputValid()) {
-
-                    DataBase dataBase = DataBase.getInstance(getContext());
-                    usersDao = dataBase.getUsersDao();
-                    usersDao.insert(new User(UUID.randomUUID().toString(), nameAndEmail[0], nameAndEmail[1], editTextPassword.getText().toString()));
-
-                    DataBase.LOGGED_IN_USER_ID = usersDao.getUserIDByEmail(nameAndEmail[1]);
-
-                    Toast.makeText(getContext(), "Welcome, " + nameAndEmail[0] + "!", Toast.LENGTH_SHORT).show();
-                    navController.navigate(RegisterSecondFragmentDirections.actionRegisterSecondFragmentToContainerFragment());
+                    addUserAndNavigateToContainerFragment();
                 }
             }
         });
@@ -119,5 +111,16 @@ public class RegisterSecondFragment extends Fragment {
         string.setSpan(new RelativeSizeSpan(1.5f), 0,1, 0);
 
         textViewStep.setText(string);
+    }
+
+    private void addUserAndNavigateToContainerFragment() {
+        DataBase dataBase = DataBase.getInstance(getContext());
+        usersDao = dataBase.getUsersDao();
+        usersDao.insert(new User(UUID.randomUUID().toString(), nameAndEmail[0], nameAndEmail[1], editTextPassword.getText().toString()));
+
+        DataBase.LOGGED_IN_USER_ID = usersDao.getUserIDByEmail(nameAndEmail[1]);
+
+        Toast.makeText(getContext(), "Welcome, " + nameAndEmail[0] + "!", Toast.LENGTH_SHORT).show();
+        navController.navigate(RegisterSecondFragmentDirections.actionRegisterSecondFragmentToContainerFragment());
     }
 }

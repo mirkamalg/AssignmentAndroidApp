@@ -79,22 +79,8 @@ public class LoginFragment extends Fragment {
                 usersDao = dataBase.getUsersDao();
 
                 if (isEmailValid()) {
-                    if (!editTextPassword.getText().toString().isEmpty()) {
-                        String attemptedPassword = usersDao.getPasswordByEmail(editTextEmail.getText().toString());
-                        if (attemptedPassword != null) {
-                            if (editTextPassword.getText().toString().equals(attemptedPassword)) {
-                                DataBase.LOGGED_IN_USER_ID = usersDao.getUserIDByEmail(editTextEmail.getText().toString());
-
-                                Toast.makeText(getContext(), "Welcome, " + usersDao.getUserNameByID(DataBase.LOGGED_IN_USER_ID) + "!", Toast.LENGTH_SHORT).show();
-                                navController.navigate(LoginFragmentDirections.actionLoginFragmentToContainerFragment());
-                            } else {
-                                Toast.makeText(getContext(), "Incorrect password!", Toast.LENGTH_SHORT).show();
-                            }
-                        }else {
-                            Toast.makeText(getContext(), "No account found with this email!", Toast.LENGTH_SHORT).show();
-                        }
-                    } else {
-                        Toast.makeText(getContext(), "Password field is empty!", Toast.LENGTH_SHORT).show();
+                    if (isInputDataCorrect()) {
+                        navigateToContainerFragment();
                     }
                 } else {
                     Toast.makeText(getContext(), "Email is invalid!", Toast.LENGTH_SHORT).show();
@@ -108,6 +94,31 @@ public class LoginFragment extends Fragment {
         Pattern pattern = Pattern.compile("[^@ \\t\\r\\n]+@[^@ \\t\\r\\n]+\\.[^@ \\t\\r\\n]+");
         Matcher matcher = pattern.matcher(editTextEmail.getText().toString());
         return matcher.find();
+    }
+
+    private boolean isInputDataCorrect() {
+        if (!editTextPassword.getText().toString().isEmpty()) {
+            String attemptedPassword = usersDao.getPasswordByEmail(editTextEmail.getText().toString());
+            if (attemptedPassword != null) {
+                if (editTextPassword.getText().toString().equals(attemptedPassword)) {
+                    return true;
+                } else {
+                    Toast.makeText(getContext(), "Incorrect password!", Toast.LENGTH_SHORT).show();
+                }
+            }else {
+                Toast.makeText(getContext(), "No account found with this email!", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(getContext(), "Password field is empty!", Toast.LENGTH_SHORT).show();
+        }
+        return false;
+    }
+
+    private void navigateToContainerFragment() {
+        DataBase.LOGGED_IN_USER_ID = usersDao.getUserIDByEmail(editTextEmail.getText().toString());
+
+        Toast.makeText(getContext(), "Welcome, " + usersDao.getUserNameByID(DataBase.LOGGED_IN_USER_ID) + "!", Toast.LENGTH_SHORT).show();
+        navController.navigate(LoginFragmentDirections.actionLoginFragmentToContainerFragment());
     }
 
 }
