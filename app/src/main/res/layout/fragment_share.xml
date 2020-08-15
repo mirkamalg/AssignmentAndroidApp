@@ -133,7 +133,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@drawable/bg_login_button"
-            android:backgroundTint="#ED9E28"
+            android:backgroundTint="@color/colorAccent"
             android:text="@string/share"
             android:textAllCaps="false"
             android:textColor="@android:color/white"

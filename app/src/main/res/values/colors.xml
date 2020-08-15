@@ -9,4 +9,7 @@
     <color name="grayTextColor">#919191</color>
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#ED9E28</color>
     <color name="sharePlaceHolderBackground">#DFDFDF</color>
+    <color name="bottomBarButtonColors">#0D1C2E</color>
+    <color name="editTextHintColor">#979797</color>
+
 </resources>
