@@ -122,25 +122,30 @@ public class FragmentShare extends Fragment {
         }
     }
 
-    private void writeImageToInternalStorage(Bitmap bitmap, String id) {
+    private void writeImageToInternalStorage(final Bitmap bitmap, final String id) {
 
-        File file = new File(requireActivity().getFilesDir(),id + ".png");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                File file = new File(requireActivity().getFilesDir(),id + ".png");
 
-        FileOutputStream fos = null;
-        try {
-            fos = new FileOutputStream(file);
+                FileOutputStream fos = null;
+                try {
+                    fos = new FileOutputStream(file);
 
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                assert fos != null;
-                fos.close();
-            } catch (IOException e) {
-                e.printStackTrace();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    try {
+                        assert fos != null;
+                        fos.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
-        }
+        }).start();
 
     }
 
